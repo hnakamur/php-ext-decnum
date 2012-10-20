@@ -1,0 +1,12 @@
+decnum.lo: /home/hnakamur/php-ext-decnum/decnum.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/hnakamur/php-ext-decnum $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/hnakamur/php-ext-decnum/decnum.c -o decnum.lo 
+libdecNumber/decNumber.lo: /home/hnakamur/php-ext-decnum/libdecNumber/decNumber.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/hnakamur/php-ext-decnum $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/hnakamur/php-ext-decnum/libdecNumber/decNumber.c -o libdecNumber/decNumber.lo 
+libdecNumber/decContext.lo: /home/hnakamur/php-ext-decnum/libdecNumber/decContext.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/hnakamur/php-ext-decnum $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/hnakamur/php-ext-decnum/libdecNumber/decContext.c -o libdecNumber/decContext.lo 
+$(phplibdir)/decnum.la: ./decnum.la
+	$(LIBTOOL) --mode=install cp ./decnum.la $(phplibdir)
+
+./decnum.la: $(shared_objects_decnum) $(DECNUM_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_decnum) $(DECNUM_SHARED_LIBADD)
+
